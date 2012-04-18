@@ -112,7 +112,7 @@ function distance_of_time_in_words($from_time, $to_time = null, $include_seconds
   else if ($distance_in_minutes >= 2 && $distance_in_minutes <= 44)
   {
     $string = '%minutes% minutes';
-    $parameters['%minutes%'] = $distance_in_minutes;
+    $parameters['%minutes%'] = $number = $distance_in_minutes;
   }
   else if ($distance_in_minutes >= 45 && $distance_in_minutes <= 89)
   {
@@ -121,7 +121,7 @@ function distance_of_time_in_words($from_time, $to_time = null, $include_seconds
   else if ($distance_in_minutes >= 90 && $distance_in_minutes <= 1439)
   {
     $string = 'about %hours% hours';
-    $parameters['%hours%'] = round($distance_in_minutes / 60);
+    $parameters['%hours%'] = $number = round($distance_in_minutes / 60);
   }
   else if ($distance_in_minutes >= 1440 && $distance_in_minutes <= 2879)
   {
@@ -130,7 +130,7 @@ function distance_of_time_in_words($from_time, $to_time = null, $include_seconds
   else if ($distance_in_minutes >= 2880 && $distance_in_minutes <= 43199)
   {
     $string = '%days% days';
-    $parameters['%days%'] = round($distance_in_minutes / 1440);
+    $parameters['%days%'] = $number = round($distance_in_minutes / 1440);
   }
   else if ($distance_in_minutes >= 43200 && $distance_in_minutes <= 86399)
   {
@@ -139,7 +139,7 @@ function distance_of_time_in_words($from_time, $to_time = null, $include_seconds
   else if ($distance_in_minutes >= 86400 && $distance_in_minutes <= 525959)
   {
     $string = '%months% months';
-    $parameters['%months%'] = round($distance_in_minutes / 43200);
+    $parameters['%months%'] = $number = round($distance_in_minutes / 43200);
   }
   else if ($distance_in_minutes >= 525960 && $distance_in_minutes <= 1051919)
   {
@@ -148,14 +148,17 @@ function distance_of_time_in_words($from_time, $to_time = null, $include_seconds
   else
   {
     $string = 'over %years% years';
-    $parameters['%years%'] = floor($distance_in_minutes / 525960);
+    $parameters['%years%'] = $number = floor($distance_in_minutes / 525960);
   }
 
   if (sfConfig::get('sf_i18n'))
   {
     require_once dirname(__FILE__).'/I18NHelper.php';
 
-    return __($string, $parameters);
+    return isset($number)
+      ? format_number_choice($string, $parameters, $number)
+      : __($string, $parameters)
+    ;
   }
   else
   {
