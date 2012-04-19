@@ -155,7 +155,7 @@ function distance_of_time_in_words($from_time, $to_time = null, $include_seconds
   {
     require_once dirname(__FILE__).'/I18NHelper.php';
 
-    return isset($number)
+    return isset($number) && substr(sfContext::getInstance()->getUser()->getCulture(), 0, 2) == 'ru'
       ? format_number_choice($string, $parameters, $number)
       : __($string, $parameters)
     ;
