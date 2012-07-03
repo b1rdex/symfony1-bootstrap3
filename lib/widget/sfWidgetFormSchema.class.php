@@ -679,6 +679,8 @@ class sfWidgetFormSchema extends sfWidgetForm implements ArrayAccess
    * @param string   $name   The field name
    * @param sfWidget $widget An sfWidget instance
    *
+   * @return sfWidgetFormSchema
+   *
    * @throws InvalidArgumentException when the field is not instance of sfWidget
    */
   public function offsetSet($name, $widget)
@@ -700,12 +702,16 @@ class sfWidgetFormSchema extends sfWidgetForm implements ArrayAccess
     {
       $this->fields[$name]->setNameFormat($name.'[%s]');
     }
+
+    return $this;
   }
 
   /**
    * Removes a field by name (implements the ArrayAccess interface).
    *
    * @param string $name field name
+   *
+   * @return sfWidgetFormSchema
    */
   public function offsetUnset($name)
   {
@@ -716,6 +722,8 @@ class sfWidgetFormSchema extends sfWidgetForm implements ArrayAccess
 
       $this->positions = array_values($this->positions);
     }
+
+    return $this;
   }
 
   /**

@@ -323,6 +323,8 @@ class sfValidatorSchema extends sfValidatorBase implements ArrayAccess
    *
    * @param string          $name       The field name
    * @param sfValidatorBase $validator  An sfValidatorBase instance
+   *
+   * @return sfValidatorSchema
    */
   public function offsetSet($name, $validator)
   {
@@ -332,16 +334,22 @@ class sfValidatorSchema extends sfValidatorBase implements ArrayAccess
     }
 
     $this->fields[$name] = clone $validator;
+
+    return $this;
   }
 
   /**
    * Removes a field by name (implements the ArrayAccess interface).
    *
    * @param string $name
+   *
+   * @return sfValidatorSchema
    */
   public function offsetUnset($name)
   {
     unset($this->fields[$name]);
+
+    return $this;
   }
 
   /**
