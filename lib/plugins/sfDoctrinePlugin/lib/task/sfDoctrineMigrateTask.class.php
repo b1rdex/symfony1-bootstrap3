@@ -105,7 +105,8 @@ EOF;
       {
         for($i = (int)$from - 1; $i >= (int)$version; $i--)
         {
-          $this->logSection('doctrine', 'executing migration : '.$i .', class: '.$migration_classes[$i]);
+          $migration_class = isset($migration_classes[$i]) ? $migration_classes[$i] : 'not found';
+          $this->logSection('doctrine', 'executing migration : '.$i .', class: '.$migration_class);
           $migration->migrate($i, $options['dry-run']);
         }
       }
@@ -113,7 +114,8 @@ EOF;
       {
         for($i = (int)$from + 1; $i <= (int)$version; $i++)
         {
-          $this->logSection('doctrine', 'executing migration : '.$i.', class: '.$migration_classes[$i]);
+          $migration_class = isset($migration_classes[$i]) ? $migration_classes[$i] : 'not found';
+          $this->logSection('doctrine', 'executing migration : '.$i.', class: '.$migration_class);
           $migration->migrate($i, $options['dry-run']);
         }
       }
