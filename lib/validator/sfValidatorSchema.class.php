@@ -347,7 +347,13 @@ class sfValidatorSchema extends sfValidatorBase implements ArrayAccess
    */
   public function offsetUnset($name)
   {
-    unset($this->fields[$name]);
+    if (is_array($name)) {
+      foreach ($name as $field) {
+        $this->offsetUnset($field);
+      }
+    } else {
+      unset($this->fields[$name]);
+    }
 
     return $this;
   }

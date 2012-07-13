@@ -709,18 +709,25 @@ class sfWidgetFormSchema extends sfWidgetForm implements ArrayAccess
   /**
    * Removes a field by name (implements the ArrayAccess interface).
    *
-   * @param string $name field name
+   * @param string|array $name field name
    *
    * @return sfWidgetFormSchema
    */
   public function offsetUnset($name)
   {
-    unset($this->fields[$name]);
-    if (false !== $position = array_search((string) $name, $this->positions))
-    {
-      unset($this->positions[$position]);
+    if (is_array($name)) {
+      foreach ($name as $offset) {
+        $this->offsetUnset($offset);
+      }
+    } else {
+      unset($this->fields[$name]);
+      if (false !== $position = array_search((string) $name, $this->positions))
+      {
+        unset($this->positions[$position]);
 
-      $this->positions = array_values($this->positions);
+        $this->positions = array_values($this->positions);
+      }
+
     }
 
     return $this;
