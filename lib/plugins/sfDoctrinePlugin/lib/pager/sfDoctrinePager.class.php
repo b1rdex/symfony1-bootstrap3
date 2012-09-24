@@ -20,6 +20,7 @@
 class sfDoctrinePager extends sfPager implements Serializable
 {
   protected
+    $results           = null,
     $query             = null,
     $tableMethodName   = null,
     $tableMethodCalled = false;
@@ -185,7 +186,23 @@ class sfDoctrinePager extends sfPager implements Serializable
    */
   public function getResults($hydrationMode = null)
   {
-    return $this->getQuery()->execute(array(), $hydrationMode);
+    return $this->results == null
+      ? $this->setResults($this->getQuery()->execute(array(), $hydrationMode))
+      : $this->results
+    ;
+  }
+
+  /**
+   * Set all the results for the pager instance
+   * Use with caution when you need to modify results of query
+   *
+   * @param mixed $results Results for pager
+   *
+   * @return Doctrine_Collection|array
+   */
+  public function setResults($results)
+  {
+    return $this->results = $results;
   }
 
   /**
