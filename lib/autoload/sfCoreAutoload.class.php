@@ -505,6 +505,7 @@ class sfCoreAutoload
     'sfwidgetformschemadecorator' => 'widget/sfWidgetFormSchemaDecorator.class.php',
     'sfwidgetformschemaforeach' => 'widget/sfWidgetFormSchemaForEach.class.php',
     'sfwidgetformschemaformatter' => 'widget/sfWidgetFormSchemaFormatter.class.php',
+    'sfwidgetformschemaformatterbootstrap' => 'widget/sfWidgetFormSchemaFormatterBootstrap.php',
     'sfwidgetformschemaformatterlist' => 'widget/sfWidgetFormSchemaFormatterList.class.php',
     'sfwidgetformschemaformattertable' => 'widget/sfWidgetFormSchemaFormatterTable.class.php',
     'sfwidgetformselect' => 'widget/sfWidgetFormSelect.class.php',
