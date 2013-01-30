@@ -120,8 +120,13 @@ function url_for1($internal_uri, $absolute = false)
  */
 function url_for()
 {
-  // for BC with 1.1
   $arguments = func_get_args();
+
+  if (!count($arguments)) {
+    return false;
+  }
+
+  // for BC with 1.1
   if (is_array($arguments[0]) || '@' == substr($arguments[0], 0, 1) || false !== strpos($arguments[0], '/'))
   {
     return call_user_func_array('url_for1', $arguments);
