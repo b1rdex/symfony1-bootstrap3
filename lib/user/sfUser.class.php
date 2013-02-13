@@ -279,6 +279,11 @@ class sfUser implements ArrayAccess
     return $this->attributeHolder->set($name, $value, $ns);
   }
 
+  public function removeAttribute($name, $ns = null)
+  {
+    return $this->attributeHolder->remove($name, null, $ns);
+  }
+
   /**
    * Executes the shutdown procedure.
    */
