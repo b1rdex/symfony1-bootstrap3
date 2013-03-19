@@ -1,5 +1,5 @@
 [?php
-  use_helper('Text');
+  use_helper('Text')
 ?]
 
 <h1 class="page-header">

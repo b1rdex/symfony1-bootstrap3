@@ -80,6 +80,7 @@ EOF;
    */
   protected function execute($arguments = array(), $options = array())
   {
+    sfContext::createInstance($this->configuration);
     $databaseManager = new sfDatabaseManager($this->configuration);
     
     $properties = parse_ini_file(sfConfig::get('sf_config_dir').'/properties.ini', true);
