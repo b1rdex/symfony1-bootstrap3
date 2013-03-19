@@ -244,4 +244,20 @@ abstract class sfDoctrineRecord extends Doctrine_Record
       throw new sfException('Cannot call setDateTimeObject() on a field that is not of type date or timestamp.');
     }
   }
+
+  public function fromArray(array $array, $deep = true)
+  {
+    parent::fromArray($array, $deep);
+
+    return $this;
+  }
+
+  public function save(Doctrine_Connection $conn = null)
+  {
+    if ($conn === null) {
+        $conn = $this->_table->getConnection();
+    }
+
+    return $conn->unitOfWork->saveGraph($this);
+  }
 }
