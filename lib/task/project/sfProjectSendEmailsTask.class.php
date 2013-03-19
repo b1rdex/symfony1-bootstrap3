@@ -60,6 +60,8 @@ EOF;
 
     $sent = $this->getMailer()->flushQueue();
 
-    $this->logSection('project', sprintf('sent %s emails', $sent));
+    if ($sent > 0) {
+      $this->logSection('project', sprintf('sent %s emails', $sent));
+    }
   }
 }
