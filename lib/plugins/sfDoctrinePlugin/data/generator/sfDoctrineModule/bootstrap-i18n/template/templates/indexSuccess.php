@@ -1,13 +1,13 @@
 <h1 class="page-header">
-  <?php echo sfInflector::humanize($this->getPluralName()) ?> List
+  [?php echo __('<?php echo sfInflector::humanize($this->getPluralName()) ?> List') ?]
 </h1>
 
 <div class="btn-toolbar">
   <div class="btn-group">
     <?php if (isset($this->params['route_prefix']) && $this->params['route_prefix']): ?>
-<a href="[?php echo url_for('<?php echo $this->getUrlForAction('new') ?>') ?]" class="btn btn-primary">New</a>
+<a href="[?php echo url_for('<?php echo $this->getUrlForAction('new') ?>') ?]" class="btn btn-primary">[?php echo __('New') ?]</a>
     <?php else: ?>
-<a href="[?php echo url_for('<?php echo $this->getModuleName() ?>/new') ?]" class="btn btn-primary">New</a>
+<a href="[?php echo url_for('<?php echo $this->getModuleName() ?>/new') ?]" class="btn btn-primary">[?php echo __('New') ?]</a>
   <?php endif; ?>
 </div>
 </div>
@@ -16,7 +16,7 @@
   <thead>
     <tr>
 <?php foreach ($this->getColumns() as $column): ?>
-      <th><?php echo sfInflector::humanize(sfInflector::underscore($column->getPhpName())) ?></th>
+      <th>[?php echo __('<?php echo sfInflector::humanize(sfInflector::underscore($column->getPhpName())) ?>') ?]</th>
 <?php endforeach; ?>
     </tr>
   </thead>

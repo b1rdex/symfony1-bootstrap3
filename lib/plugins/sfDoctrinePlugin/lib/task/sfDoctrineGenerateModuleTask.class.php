@@ -133,17 +133,15 @@ EOF;
 
     $this->constants['CREDENTIALS'] = sprintf(<<<EOF
 new:
-  credentials: [[can_create_%s]]
+  credentials: [[can_create_%1\$s]]
 
 edit:
-  credentials: [[can_edit_%s]]
+  credentials: [[can_edit_%1\$s]]
 
 delete:
-  credentials: [[can_delete_%s]]
+  credentials: [[can_delete_%1\$s]]
 EOF
     ,
-      $options['plural'] ?: sfInflector::underscore($arguments['module'].'s'),
-      $options['plural'] ?: sfInflector::underscore($arguments['module'].'s'),
       $options['plural'] ?: sfInflector::underscore($arguments['module'].'s')
     );
 

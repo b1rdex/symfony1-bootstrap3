@@ -33,3 +33,5 @@ all:
 
     # Enable the database manager
     use_database:           ##USE_DATABASE##
+
+    standard_helpers:       [Partial, Cache, Text, I18N]
