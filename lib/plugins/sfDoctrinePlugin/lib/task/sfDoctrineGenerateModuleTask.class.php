@@ -131,6 +131,22 @@ EOF;
     $finder = sfFinder::type('file')->name('*.php');
     $this->getFilesystem()->replaceTokens($finder->in($moduleDir), '', '', array('auto'.ucfirst($arguments['module']) => $arguments['module']));
 
+    $this->constants['CREDENTIALS'] = sprintf(<<<EOF
+new:
+  credentials: [[can_create_%s]]
+
+edit:
+  credentials: [[can_edit_%s]]
+
+delete:
+  credentials: [[can_delete_%s]]
+EOF
+    ,
+      $options['plural'] ?: sfInflector::underscore($arguments['module'].'s'),
+      $options['plural'] ?: sfInflector::underscore($arguments['module'].'s'),
+      $options['plural'] ?: sfInflector::underscore($arguments['module'].'s')
+    );
+
     // customize php and yml files
     $finder = sfFinder::type('file')->name('*.php', '*.yml');
     $this->getFilesystem()->replaceTokens($finder->in($moduleDir), '##', '##', $this->constants);
