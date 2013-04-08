@@ -175,6 +175,22 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
      */
     protected $_sql;
 
+    protected $_needsDefaultOrderBy = true;
+
+    public function addDefaultOrderBy()
+    {
+      $this->_needsDefaultOrderBy = true;
+
+      return $this;
+    }
+
+    public function removeDefaultOrderBy()
+    {
+      $this->_needsDefaultOrderBy = false;
+
+      return $this;
+    }
+
     /**
      * create
      * returns a new Doctrine_Query object
@@ -1336,7 +1352,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
 
         // Add the default orderBy statements defined in the relationships and table classes
         // Only do this for SELECT queries
-        if ($this->_type === self::SELECT) {
+        if ($this->_type === self::SELECT and $this->_needsDefaultOrderBy === true) {
             foreach ($this->_queryComponents as $alias => $map) {
                 $sqlAlias = $this->getSqlTableAlias($alias);
                 if (isset($map['relation'])) {

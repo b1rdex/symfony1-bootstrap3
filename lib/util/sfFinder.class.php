@@ -42,6 +42,7 @@ class sfFinder
   protected $follow_link            = false;
   protected $sort                   = false;
   protected $ignore_version_control = true;
+  protected $mapper                 = null;
 
   /**
    * Sets maximum directory depth.
@@ -333,6 +334,13 @@ class sfFinder
     return $this;
   }
 
+  public function map($mapper = null)
+  {
+    $this->mapper = $mapper;
+
+    return $this;
+  }
+
   /**
    * Searches files and directories which match defined rules.
    *
@@ -393,7 +401,7 @@ class sfFinder
       sort($files);
     }
 
-    return array_unique($files);
+    return array_map($this->mapper, array_unique($files));
   }
 
   protected function search_in($dir, $depth = 0)
