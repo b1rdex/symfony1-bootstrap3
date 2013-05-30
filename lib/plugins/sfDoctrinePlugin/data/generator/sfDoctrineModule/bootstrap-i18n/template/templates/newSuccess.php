@@ -1,3 +1,5 @@
+[?php slot('title', __('New <?php echo sfInflector::humanize($this->getSingularName()) ?>')) ?]
+
 <h1 class="page-header">
   [?php echo __('New <?php echo sfInflector::humanize($this->getSingularName()) ?>') ?]
 </h1>

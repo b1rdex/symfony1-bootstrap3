@@ -46,13 +46,13 @@
 <?php if (isset($this->params['route_prefix']) && $this->params['route_prefix']): ?>
       [?php echo link_to('Delete', '<?php echo $this->getUrlForAction('delete') ?>', $form->getObject(), array(
         'method' => 'delete',
-        'confirm' => echo __('Are you sure?'),
+        'confirm' => __('Are you sure?'),
         'class' => 'btn btn-warning pull-right'
       )) ?]
 <?php else: ?>
       [?php echo link_to('Delete', '<?php echo $this->getModuleName() ?>/delete?<?php echo $this->getPrimaryKeyUrlParams('$form->getObject()', true) ?>, array(
         'method' => 'delete',
-        'confirm' => echo __('Are you sure?'),
+        'confirm' => __('Are you sure?'),
         'class' => 'btn btn-warning pull-right',
       )) ?]
 <?php endif; ?>

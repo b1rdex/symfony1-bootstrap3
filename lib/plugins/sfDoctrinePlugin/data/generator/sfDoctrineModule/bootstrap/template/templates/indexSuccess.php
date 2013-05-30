@@ -1,3 +1,5 @@
+[?php slot('title', '<?php echo sfInflector::humanize($this->getPluralName()) ?> List') ?]
+
 <h1 class="page-header">
   <?php echo sfInflector::humanize($this->getPluralName()) ?> List
 </h1>
