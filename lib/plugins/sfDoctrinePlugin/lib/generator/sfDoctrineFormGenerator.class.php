@@ -352,7 +352,7 @@ class sfDoctrineFormGenerator extends sfGenerator
       $options[] = '\'choices\' => '.$this->arrayExport(array_combine($column['values'], $column['values']));
     }
 
-    return count($options) ? sprintf('array(%s)', implode(', ', $options)) : '';
+    return count($options) ? sprintf('array(%s)', implode(', ', $options)) : '[]';
   }
 
   /**
@@ -471,6 +471,18 @@ class sfDoctrineFormGenerator extends sfGenerator
     }
 
     return count($options) ? sprintf('array(%s)', implode(', ', $options)) : '';
+  }
+
+  public function getWidgetAttributesForColumn($column)
+  {
+    $options = array();
+
+    if (!(!$column->isNotNull() || $column->isPrimaryKey() || $column->hasDefinitionKey('default')))
+    {
+      $options[] = '\'required\' => \'required\'';
+    }
+
+    return count($options) ? sprintf('array(%s)', implode(', ', $options)) : '[]';
   }
 
   /**
