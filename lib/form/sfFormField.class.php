@@ -154,6 +154,24 @@ class sfFormField
   }
 
   /**
+   * Returns a formatted row using specified form formatter.
+   *
+   * @see renderRow
+   */
+  public function renderRowUsing($formatter, $attributes = array(), $label = null, $help = null)
+  {
+    $currentFormatterName = $this->parent->getWidget()->getFormFormatterName();
+
+    $this->parent->getWidget()->setFormFormatterName($formatter);
+
+    $output = $this->renderRow($attributes, $label, $help);
+
+    $this->parent->getWidget()->setFormFormatterName($currentFormatterName);
+
+    return $output;
+  }
+
+  /**
    * Returns a formatted error list.
    *
    * The formatted list will use the parent widget schema formatter.
