@@ -252,6 +252,15 @@ abstract class sfDoctrineRecord extends Doctrine_Record
     return $this;
   }
 
+  public static function createFromArray(array $array, $deep = true)
+  {
+    $called = get_called_class();
+    $record = new $called;
+    $record->fromArray($array, $deep);
+
+    return $record;
+  }
+
   public function save(Doctrine_Connection $conn = null)
   {
     if ($conn === null) {
