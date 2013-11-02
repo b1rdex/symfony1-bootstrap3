@@ -31,6 +31,11 @@ class sfExecutionFilter extends sfFilter
    */
   public function execute($filterChain)
   {
+    // if pinba available replace controller.php with /some/routed/path
+    if (function_exists('pinba_script_name_set')) {
+      pinba_script_name_set($this->context->getRequest()->getUri());
+    }
+
     // get the current action instance
     $actionInstance = $this->context->getController()->getActionStack()->getLastEntry()->getActionInstance();
 
