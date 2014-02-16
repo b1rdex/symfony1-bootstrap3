@@ -267,6 +267,8 @@ abstract class sfDoctrineRecord extends Doctrine_Record
         $conn = $this->_table->getConnection();
     }
 
-    return $conn->unitOfWork->saveGraph($this);
+    $conn->unitOfWork->saveGraph($this);
+
+    return $this;
   }
 }

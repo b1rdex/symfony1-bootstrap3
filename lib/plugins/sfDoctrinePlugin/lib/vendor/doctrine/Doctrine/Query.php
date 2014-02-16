@@ -2262,4 +2262,37 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
         $this->_parsers = array();
         $this->_dqlParts = array();
     }
+
+    /**
+     * @link http://snippets.symfony-project.org/snippet/371
+     *
+     * @return Doctrine_Query   this object
+     */
+    public function toGroup()
+    {
+        $where = $this->_dqlParts['where'];
+        if (count($where) > 0) {
+          array_splice($where, count($where) - 1, 0, '(');
+          $this->_dqlParts['where'] = $where;
+        }
+
+        return $this;
+    }
+
+    /**
+     * @link http://snippets.symfony-project.org/snippet/371
+     *
+     * @return Doctrine_Query   this object
+    */
+    public function endGroup()
+    {
+        $where = $this->_dqlParts['where'];
+        if (count($where) > 0)
+        {
+          $where[] = ')';
+          $this->_dqlParts['where'] = $where;
+        }
+
+        return $this;
+    }
 }
