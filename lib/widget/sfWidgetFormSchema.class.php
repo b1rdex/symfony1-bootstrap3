@@ -350,6 +350,29 @@ class sfWidgetFormSchema extends sfWidgetForm implements ArrayAccess
 
     return $this;
   }
+  
+  public function setLabelBootstrap3($name, $value = null)
+  {
+    if (2 == func_num_args())
+    {
+      if (!isset($this->fields[$name]))
+      {
+        throw new InvalidArgumentException(sprintf('Unable to set the label on an unexistant widget ("%s").', $name));
+      }
+	  
+	  sfProjectConfiguration::getActive()->loadHelpers(array('I18N'));
+	  $value = '<div class="panel panel-default"><div class="panel-heading">'.__($value).'</div><div class="panel-body">';
+	  
+      $this->fields[$name]->setLabel($value);
+    }
+    else
+    {
+      // set the label for this widget schema
+      parent::setLabel($name);
+    }
+
+    return $this;
+  }
 
   /**
    * Gets a label by field name.

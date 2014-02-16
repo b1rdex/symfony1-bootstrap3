@@ -352,9 +352,21 @@ class sfDoctrineFormGenerator extends sfGenerator
       $options[] = '\'choices\' => '.$this->arrayExport(array_combine($column['values'], $column['values']));
     }
 
-    return count($options) ? sprintf('array(%s)', implode(', ', $options)) : '';
+    return count($options) ? sprintf('array(%s)', implode(', ', $options)) : '[]';
   }
-
+  
+  public function getWidgetAttributesForColumn($column)
+   {
+     $options = array();
+ 
+     if ($column->getDoctrineType() != 'boolean')
+	 {
+		$options[] = '\'class\' => \'form-control\'';
+	 }
+ 
+     return count($options) ? sprintf('array(%s)', implode(', ', $options)) : '[]';
+   }
+  
   /**
    * Returns a sfValidator class name for a given column.
    *
