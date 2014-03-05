@@ -352,7 +352,7 @@ class sfDoctrineFormGenerator extends sfGenerator
       $options[] = '\'choices\' => '.$this->arrayExport(array_combine($column['values'], $column['values']));
     }
 
-    return count($options) ? sprintf('array(%s)', implode(', ', $options)) : '[]';
+    return count($options) ? sprintf('array(%s)', implode(', ', $options)) : 'array()';
   }
   
   public function getWidgetAttributesForColumn($column)
@@ -364,7 +364,7 @@ class sfDoctrineFormGenerator extends sfGenerator
 		$options[] = '\'class\' => \'form-control\'';
 	 }
  
-     return count($options) ? sprintf('array(%s)', implode(', ', $options)) : '[]';
+     return count($options) ? sprintf('array(%s)', implode(', ', $options)) : 'array()';
    }
   
   /**

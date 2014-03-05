@@ -50,7 +50,7 @@
         'class' => 'btn btn-warning pull-right'
       )) ?]
 <?php else: ?>
-      [?php echo link_to(__('Delete'), '<?php echo $this->getModuleName() ?>/delete?<?php echo $this->getPrimaryKeyUrlParams('$form->getObject()', true) ?>, array(
+      [?php echo link_to('<span class="glyphicon glyphicon-trash"></span> '.__('Delete'), '<?php echo $this->getModuleName() ?>/delete?<?php echo $this->getPrimaryKeyUrlParams('$form->getObject()', true) ?>, array(
         'method' => 'delete',
         'confirm' => __('Are you sure?'),
         'class' => 'btn btn-warning pull-right',
